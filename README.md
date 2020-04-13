@@ -1,9 +1,13 @@
-# honey-bee-behaviour
-% Cell Visit Survey - Program for honey bee behavioural studies
-% Dr. Paul Siefert
-% Bee Research Institute Oberursel
-% Goethe-University Frankfurt
+# Cell Visit Survey - Program for honey bee behavioural studies
+
+Dr. Paul Siefert
+
+Bee Research Institute Oberursel
+
+Goethe-University Frankfurt
+
 % siefert@uni-frankfurt.de
+
 %
 % Original research: 
 % Siefert, P.; Hota, R.; Ramesh, V.; Grünewald, B. 
