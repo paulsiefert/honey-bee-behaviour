@@ -24,10 +24,10 @@ Associated files:
 https://de.mathworks.com/matlabcentral/fileexchange/10465-xlswrite1  
 
 **Trained networks are available on request**  
-4 Classes (Feeding, Building, Heating, Other):  
-- LW_TrainVgg16_BeeNet4_201807.mat - 489,115 KB  
-2 Classes (Feeding, Other)  
-- LW_TrainVgg16Classify_20180625.mat - 488,469 KB  
+- 4 Classes (Feeding, Building, Heating, Other):  
+LW_TrainVgg16_BeeNet4_201807.mat - 489,115 KB  
+- 2 Classes (Feeding, Other)  
+LW_TrainVgg16Classify_20180625.mat - 488,469 KB  
 
 Fundamental code components have been taken from  
 MAGIC - MATLAB Generic Imaging Component by Mark Hayworth  
