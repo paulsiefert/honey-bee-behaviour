@@ -21,6 +21,10 @@ Associated files:
 
 # STI_gneration - Program to create STI from Norpix sequences
 
+This script uses line coordinates from FreeHandDraw to create a 
+space-time image (STI) from a Norpix sequence. It uses Bresenhams 
+algorithm and the parpool argument to use all avalable processor cores. 
+
 Associated files:  
 - STI_generation_parallel_ver5_SEQ.m- main code  
 - structfind.m - By Dirk-Jan Kroon, also available on MATLAB FileExchange   
