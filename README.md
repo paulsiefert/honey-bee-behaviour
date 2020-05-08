@@ -34,10 +34,7 @@ Associated files:
 
 # Cell Visit Survey - Program for honey bee behavioural studies
 
-This GUI detects cell visits (events) on a space-time image (STI) with a   
-variety of filters. Manual and automated classifications, using VGG16 as   
-convolutional neural network, are possible with option of viewing the  
-corresponding AVI or SEQ file.  
+This GUI detects cell visits (events) on a space-time image (STI) with a variety of filters. Manual and automated classifications, using VGG16 as convolutional neural network, are possible with option of viewing the corresponding AVI or SEQ file.  
 
 Associated files:  
 - CeViS_2_7_4.fig - MATLAB GUI figure file  
