@@ -14,7 +14,7 @@ Scientific Reports 2020
 This script sets the coordinates that can be used by Bresenhams line 
 algorithm in order to create a space-time image (STI) from a Norpix
 StreamPix sequence file. The saved text file will contain information 
-needed in the "STI generation" script (STI_generation_parallel_ver5_SEQ.m).  
+needed in the STI_generation script.  
 
 Associated files:  
 - FreeHandDraw_9_SEQ.m - main code  
