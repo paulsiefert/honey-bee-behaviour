@@ -1,5 +1,3 @@
-# Cell Visit Survey - Program for honey bee behavioural studies
-
 Dr. Paul Siefert  
 Bee Research Institute Oberursel  
 Goethe-University Frankfurt  
@@ -11,6 +9,27 @@ Chronic within-hive video registrations detect altered nursing behaviour
 and retarded larval development of neonicotinoid treated honey bees.  
 Scientific Reports 2020  
 
+# FreeHandDraw - Program to draw lines of interest on Norpix sequences
+
+This script sets the coordinates that can be used by Bresenhams line 
+algorithm in order to create a space-time image (STI) from a Norpix
+StreamPix sequence file. The saved text file will contain information  
+needed in the "STI generation" script (STI_generation_parallel_ver5_SEQ.m).  
+
+Associated files:  
+- FreeHandDraw_9_SEQ.m - main code  
+
+# STI_gneration - Program to create STI from Norpix sequences
+
+Associated files:  
+- STI_generation_parallel_ver5_SEQ.m- main code  
+- structfind.m - By Dirk-Jan Kroon, also available on MATLAB FileExchange   
+- bresenham.m - By Aaron Wetzler, also available on MATLAB FileExchange  
+- parsave.m - Workaround to save .mat files while in parfor loop  
+- ReadSEQIdxFrame.m - Usage of StreamPix .idx files for compressed sequences 
+
+# Cell Visit Survey - Program for honey bee behavioural studies
+
 This GUI detects cell visits (events) on a space-time image (STI) with a   
 variety of filters. Manual and automated classifications, using VGG16 as   
 convolutional neural network, are possible with option of viewing the  
@@ -20,8 +39,7 @@ Associated files:
 - CeViS_2_7_4.fig - MATLAB GUI figure file  
 - CeViS_2_7_4.m - MATLAB code for figure  
 - CeViS_User_Settings.mat - User settings for reload  
-- xlswrite1.m - fast xlswrite function by Matt Swartz available on  
-https://de.mathworks.com/matlabcentral/fileexchange/10465-xlswrite1  
+- xlswrite1.m - fast xlswrite function by Matt Swartz, also available on MATLAB FileExchange 
 
 **Trained networks are available on request**  
 - 4 Classes (Feeding, Building, Heating, Other):  
