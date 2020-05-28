@@ -1169,13 +1169,14 @@ global basefilename
 for EventNo = 1:size(FeedingEvents,1)
     FeedingEventsSaveTemp(end+1, :) = FeedingEvents(EventNo,:);
 end
-FeedingEventsSaveTemp = sortrows(FeedingEventsSaveTemp,4);
+%assignin('base', 'FeedingEventsSaveTemp', FeedingEventsSaveTemp);
+%FeedingEventsSaveTemp = sortrows(FeedingEventsSaveTemp,4);
 set(handles.txtFeedStoredInTemp, 'String', num2str(size(FeedingEventsSaveTemp,1)));
 
 msg = [num2str(size(FeedingEvents,1)) ' "Feedings" of ' basefilename ' have been stored in Temp.'];
 logDisplay(msg, handles)
-
 assignin('base', 'FeedingEventsSaveTemp', FeedingEventsSaveTemp);
+
 
 % --- save unclassified events.
 function save_unclassified_to_temp(handles)
@@ -1186,7 +1187,7 @@ global basefilename
 for EventNo = 1:size(UnclassifiedEvents,1)
     UnclassifiedEventsSaveTemp(end+1,:) = UnclassifiedEvents(EventNo,:);
 end
-UnclassifiedEventsSaveTemp = sortrows(UnclassifiedEventsSaveTemp,4);
+%UnclassifiedEventsSaveTemp = sortrows(UnclassifiedEventsSaveTemp,4);
 set(handles.txtOtherStoredInTemp, 'String', num2str(size(UnclassifiedEventsSaveTemp,1)));
 
 msg = [num2str(size(UnclassifiedEvents,1)) ' "Unclassified" of ' basefilename ' have been stored in Temp.'];
@@ -1290,6 +1291,7 @@ if ~size(FeedingEventsSaveTemp,1) == 0
     if ~isempty(FeedingEventsSaveTemp{1,1})
         ExportTable = export_feeding_temp(d);
         ExportTable = AddOntogenesisTimestamps(handles, ExportTable);
+        ExportTable(2:end,:) = sortrows(ExportTable(2:end,:),4); 
         xlswrite1([ExcelPfad base '.xls'],ExportTable, 1, 'A1');
         Excel.Worksheets.Item(1).Name = 'Feedings';
     end
@@ -1299,6 +1301,7 @@ if ~size(UnclassifiedEventsSaveTemp,1) == 0
     if ~isempty(UnclassifiedEventsSaveTemp{1,1})
         ExportTable = export_unclassified_temp(d);
         ExportTable = AddOntogenesisTimestamps(handles, ExportTable);
+        ExportTable(2:end,:) = sortrows(ExportTable(2:end,:),4); 
         xlswrite1([ExcelPfad base '.xls'],ExportTable, 2, 'A1');
         Excel.Worksheets.Item(1).Name = 'Feedings';
         Excel.Worksheets.Item(2).Name = 'Unclassified';
@@ -1309,6 +1312,7 @@ if ~size(HeatingEventsSaveTemp,1) == 0
     if ~isempty(HeatingEventsSaveTemp{1,1})
         ExportTable = export_heating_temp(d);
         ExportTable = AddOntogenesisTimestamps(handles, ExportTable);
+        ExportTable(2:end,:) = sortrows(ExportTable(2:end,:),4); 
         xlswrite1([ExcelPfad base '.xls'],ExportTable, 3, 'A1');
         Excel.Worksheets.Item(1).Name = 'Feedings';
         Excel.Worksheets.Item(2).Name = 'Unclassified';
@@ -1320,6 +1324,7 @@ if ~size(BuildingEventsSaveTemp,1) == 0
     if ~isempty(BuildingEventsSaveTemp{1,1})
         ExportTable = export_building_temp(d);
         ExportTable = AddOntogenesisTimestamps(handles, ExportTable);
+        ExportTable(2:end,:) = sortrows(ExportTable(2:end,:),4); 
         xlswrite1([ExcelPfad base '.xls'],ExportTable, 4, 'A1');
         Excel.Worksheets.Item(1).Name = 'Feedings';
         Excel.Worksheets.Item(2).Name = 'Unclassified';
@@ -1332,6 +1337,7 @@ if ~size(InspectionEventsSaveTemp,1) == 0
     if ~isempty(InspectionEventsSaveTemp{1,1})
         ExportTable = export_inspection_temp(d);
         ExportTable = AddOntogenesisTimestamps(handles, ExportTable);
+        ExportTable(2:end,:) = sortrows(ExportTable(2:end,:),4); 
         xlswrite1([ExcelPfad base '.xls'],ExportTable, 5, 'A1');
         Excel.Worksheets.Item(1).Name = 'Feedings';
         Excel.Worksheets.Item(2).Name = 'Unclassified';
@@ -1553,7 +1559,7 @@ global FeedingEvents
 potFeedingAmount = str2double(get(handles.txtPotFeedingAmount, 'String'));
 potFeedingNo = str2double(get(handles.txtPotFeedingNumber, 'String'));
 FeedingEvents(end+1,:) = cellFilter(potFeedingNo,:);
-FeedingEvents{end,1}(1,12) = str2double(get(handles.BeeNumber_edit, 'String'));
+%FeedingEvents{end,1}(1,12) = str2double(get(handles.BeeNumber_edit, 'String'));
 set(handles.BeeNumber_edit, 'String', num2str(0));
 
 if potFeedingNo < potFeedingAmount
@@ -1579,7 +1585,7 @@ global UnclassifiedEvents
 potFeedingAmount = str2double(get(handles.txtPotFeedingAmount, 'String'));
 potFeedingNo = str2double(get(handles.txtPotFeedingNumber, 'String'));
 UnclassifiedEvents(end+1,:) = cellFilter(potFeedingNo,:);
-UnclassifiedEvents{end,1}(1,12) = str2double(get(handles.BeeNumber_edit, 'String'));
+%UnclassifiedEvents{end,1}(1,12) = str2double(get(handles.BeeNumber_edit, 'String'));
 set(handles.BeeNumber_edit, 'String', num2str(0));
 
 if potFeedingNo < potFeedingAmount
@@ -1605,7 +1611,7 @@ global InspectionEvents
 potFeedingAmount = str2double(get(handles.txtPotFeedingAmount, 'String'));
 potFeedingNo = str2double(get(handles.txtPotFeedingNumber, 'String'));
 InspectionEvents(end+1,:) = cellFilter(potFeedingNo,:);
-InspectionEvents{end,1}(1,12) = str2double(get(handles.BeeNumber_edit, 'String'));
+%InspectionEvents{end,1}(1,12) = str2double(get(handles.BeeNumber_edit, 'String'));
 set(handles.BeeNumber_edit, 'String', num2str(0));
 
 if potFeedingNo < potFeedingAmount
@@ -1991,7 +1997,7 @@ frame = part*65499+startframe;
 set(handles.totalFrame, 'String', num2str(frame));
 TimeConversion(handles)
 
-if size(cellFilter,2) == 5
+if ~isempty(cellFilter{potFeedingNo,5})
     FeedingProbability = cellFilter{potFeedingNo,5}(1,1);
     OtherProb = cellFilter{potFeedingNo,5}(1,2);
     FeedingProb = sprintf('%.2f',FeedingProbability * 100);
@@ -2444,8 +2450,9 @@ global BeeNetClassifierType
 Classifier2Checked = get(hObject,'Value');
 Classifier4Checked = get(handles.use_4C_classifier_checkbox, 'Value');
 if Classifier2Checked
-    set(handles.reject_events_checkbox,'enable','on')
-    set(handles.accept_events_checkbox,'enable','on')
+    set(handles.NNPanel,'Visible','on')
+    set(handles.reject_events_checkbox,'Value',1,'enable','on')
+    set(handles.accept_events_checkbox,'Value',1,'enable','on')
     set(handles.use_4C_classifier_checkbox, 'Value', 0, 'enable','off');
     if BeeNetClassifierType ~= 2
         SetPointerWatch()
@@ -2456,9 +2463,9 @@ if Classifier2Checked
     end
 else
     set(handles.reject_events_checkbox,'Value',0,'enable','off')
+    set(handles.accept_events_checkbox,'Value',0,'enable','off') 
     set(handles.quick_analysis_checkbox,'Value',0,'enable','off')
-    set(handles.text35,'Visible','off')
-    set(handles.reject_level,'Visible','off')
+    set(handles.NNPanel,'Visible','off')
     set(handles.use_4C_classifier_checkbox, 'Value', 0, 'enable','on');
 end
 
@@ -2478,12 +2485,13 @@ Classifier4Checked = get(hObject,'Value');
 if Classifier4Checked
     %set(handles.level3percent, 'Value', 0, 'enable', 'off')
     set(handles.use_2C_classifier_checkbox, 'Value', 0,'enable','off')
+    set(handles.NNPanel,'Visible','on')
     set(handles.reject_events_checkbox,'enable','on')
     set(handles.reject_events_checkbox,'Value',0,'enable','off')
     set(handles.accept_events_checkbox,'Value',0,'enable','off')
+    set(handles.reject_level,'enable','off')
+    set(handles.accept_level,'enable','off')
     set(handles.quick_analysis_checkbox,'Value',1,'enable','off')
-    set(handles.text35,'Visible','off')
-    set(handles.reject_level,'Visible','off')
     set(handles.level3percent,'String','0','enable','off');
     set(handles.minimum_visit_length,'String','10','enable','off');
     set(handles.maximum_visit_length,'String','10000','enable','off');
@@ -2497,11 +2505,14 @@ if Classifier4Checked
     end
 else
     set(handles.use_2C_classifier_checkbox, 'Value', 0, 'enable','on')
+    set(handles.NNPanel,'Visible','off')
     set(handles.quick_analysis_checkbox,'Value',0,'enable','off')
     set(handles.level3percent,'String','30','enable','on');
     set(handles.minimum_visit_length,'String','10','enable','on');
     set(handles.maximum_visit_length,'String','300','enable','on');
     set(handles.batch_processing_checkbox,'enable','off');
+    set(handles.reject_level,'enable','on')
+    set(handles.accept_level,'enable','on')
 end
 
 % --- when reject events checkbox is checked.
@@ -2513,14 +2524,7 @@ function reject_events_checkbox_Callback(hObject, eventdata, handles)
 % Hint: get(hObject,'Value') returns toggle state of reject_events_checkbox
 active = get(hObject,'Value');
 if active
-    set(handles.text35,'Visible','on')
-    set(handles.reject_level,'Visible','on')
-    set(handles.text45,'Visible','on')
-    set(handles.quick_analysis_checkbox,'enable','on')
-else
-    set(handles.text35,'Visible','off')
-    set(handles.reject_level,'Visible','off')
-    set(handles.text45,'Visible','off')
+    set(handles.quick_analysis_checkbox,'enable','off')
 end
 if ~active && get(handles.accept_events_checkbox,'Value') == 0
     set(handles.quick_analysis_checkbox,'Value',0,'enable','off')
@@ -2530,14 +2534,7 @@ end
 function accept_events_checkbox_Callback(hObject, eventdata, handles)
 active = get(hObject,'Value');
 if active
-    set(handles.text46,'Visible','on')
-    set(handles.accept_level,'Visible','on')
-    set(handles.text47,'Visible','on')
-    set(handles.quick_analysis_checkbox,'enable','on')
-else
-    set(handles.text46,'Visible','off')
-    set(handles.accept_level,'Visible','off')
-    set(handles.text47,'Visible','off')
+    set(handles.quick_analysis_checkbox,'enable','off')
 end
 if ~active && get(handles.reject_events_checkbox,'Value') == 0
     set(handles.quick_analysis_checkbox,'Value',0,'enable','off')
@@ -2686,28 +2683,28 @@ logDisplay(msg, handles)
 % --- set oviposition frame and calculate approximate larval hatch 
 function oviposition_button_Callback(hObject, eventdata, handles)
 handles.oviposition = str2double(get(handles.totalFrame,'String'));
-msg = ['Oviposition at frame: ' num2str(handles.oviposition) ' saved in temp'];
+msg = ['OVIPOSITION at frame: ' num2str(handles.oviposition) ' (Part ' num2str(ceil(handles.oviposition/65499)) ') saved in temp'];
 logDisplay(msg, handles)
 ApproxHatchtime = handles.oviposition + 259200;
-msg = ['Approx. larval hatch: ' num2str(ApproxHatchtime) ' (3.95 Parts)'];
+msg = ['Larval hatch: ~' num2str(ApproxHatchtime) ' (Part ' num2str(ceil(ApproxHatchtime/65499)) ')'];
 logDisplay(msg, handles)
 guidata(hObject, handles);
 
 % --- set larval hatch frame
 function larval_hatch_button_Callback(hObject, eventdata, handles)
 handles.larvalHatch = str2double(get(handles.totalFrame,'String'));
-msg = ['Laval hatch at frame: ' num2str(handles.larvalHatch) ' saved in temp'];
+msg = ['LARVAL HATCH at frame: ' num2str(handles.larvalHatch) ' (Part ' num2str(ceil(handles.larvalHatch/65499)) ') saved in temp'];
 logDisplay(msg, handles)
 guidata(hObject, handles);
 
 % --- set capping frame and calculate approximate oviposition & larval hatch 
 function set_capping_point_button_Callback(hObject, eventdata, handles) %#ok<*DEFNU>
 handles.capping = str2double(get(handles.totalFrame,'String'));
-msg = ['Capping at frame: ' num2str(handles.capping) ' saved in temp'];
+msg = ['CAPPING at frame: ' num2str(handles.capping) ' (Part ' num2str(ceil(handles.capping/65499)) ') saved in temp'];
 logDisplay(msg, handles)
 ApproxHatchtime = handles.capping - 475200;
 ApproxOviposition = handles.capping - 734400;
-msg = ['Approx. larval hatch: ' num2str(ApproxHatchtime) '(7.25 parts); Oviposition: ' num2str(ApproxOviposition) ' (11.2 parts)'];
+msg = ['Larval hatch: ~' num2str(ApproxHatchtime) ' (Part ' num2str(ceil(ApproxHatchtime/65499)) '); Oviposition: ~' num2str(ApproxOviposition) ' (Part ' num2str(ceil(ApproxOviposition/65499)) ')'];
 logDisplay(msg, handles)
 guidata(hObject, handles);
 SetCappingPoint(handles)
@@ -2715,7 +2712,7 @@ SetCappingPoint(handles)
 % --- set frame after completion of metamorphosis 
 function prepupa_button_Callback(hObject, eventdata, handles)
 handles.prepupa = str2double(get(handles.totalFrame,'String'));
-msg = ['Prepupa at frame: ' num2str(handles.prepupa) ' saved in temp'];
+msg = ['PREPUPA at frame: ' num2str(handles.prepupa) ' (Part ' num2str(ceil(handles.prepupa/65499)) ') saved in temp'];
 logDisplay(msg, handles)
 guidata(hObject, handles);
 
@@ -3265,3 +3262,10 @@ if x > 16 && x < 1515 && y > 146 && y < 618
     setXlim(handles, newFrameposition)
     DisplayVideo(newTotalFrame, handles)
 end
+
+
+% --- Executes during object creation, after setting all properties.
+function reject_events_checkbox_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to reject_events_checkbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
